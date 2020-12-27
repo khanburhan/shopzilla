@@ -83,6 +83,7 @@ export default makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
+    backgroundColor: fade("#ede7f6", 0.1),
   },
   content: {
     flexGrow: 1,
