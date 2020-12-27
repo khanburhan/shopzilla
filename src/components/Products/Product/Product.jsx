@@ -17,7 +17,7 @@ const Product = ({ product, onAddToCart }) => {
   const handleAddToCart = () => onAddToCart(product.id, 1);
 
   return (
-    <Card className={classes.root}>
+    <Card className={`${classes.root} ${classes.cardBackground}`}>
       <CardMedia
         className={classes.media}
         image={product.media.source}
@@ -25,23 +25,23 @@ const Product = ({ product, onAddToCart }) => {
       />
       <CardContent>
         <div className={classes.cardContent}>
-          <Typography gutterBottom variant="h6" component="h2">
+          <Typography gutterBottom variant="body1" component="h2">
             {product.name}
-          </Typography>
-          <Typography gutterBottom variant="h6" component="h2">
-            ${product.price.formatted}
           </Typography>
         </div>
         <Typography
           dangerouslySetInnerHTML={{ __html: product.description }}
           variant="body2"
-          color="textSecondary"
           component="p"
+          className={classes.productDescription}
         />
       </CardContent>
       <CardActions disableSpacing className={classes.cardActions}>
+        <Typography gutterBottom variant="body1" component="h2">
+          ${product.price.formatted}
+        </Typography>
         <IconButton aria-label="Add to Cart" onClick={handleAddToCart}>
-          <AddShoppingCart />
+          <AddShoppingCart className={classes.cartAddButton} />
         </IconButton>
       </CardActions>
     </Card>

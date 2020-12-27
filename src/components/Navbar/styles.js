@@ -1,27 +1,45 @@
 import { makeStyles, fade } from "@material-ui/core/styles";
 
-const drawerWidth = 0;
+const drawerWidth = 240;
 
 export default makeStyles((theme) => ({
   appBar: {
+    zIndex: theme.zIndex.drawer + 1,
     boxShadow: "none",
     borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
     [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
+    backgroundColor: "#673ab7",
+  },
+  drawer: {
+    [theme.breakpoints.up("sm")]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+  },
+  drawerContainer: {
+    overflow: "auto",
   },
   title: {
     flexGrow: 1,
     alignItems: "center",
     display: "flex",
     textDecoration: "none",
+    color: "#ede7f6",
+  },
+  cartIcon: {
+    color: "#ede7f6",
   },
   image: {
     marginRight: "10px",
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
+    },
   },
   grow: {
     flexGrow: 1,
@@ -61,5 +79,13 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       width: "20ch",
     },
+  },
+  toolbar: theme.mixins.toolbar,
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
   },
 }));
