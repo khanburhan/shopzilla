@@ -13,3 +13,15 @@ const app = firebase.initializeApp({
 
 export const auth = app.auth();
 export default app;
+
+const googleProvider = new firebase.auth.GoogleAuthProvider();
+export const signInWithGoogle = () => {
+  auth
+    .signInWithPopup(googleProvider)
+    .then((res) => {
+      console.log(res.user);
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+};

@@ -105,6 +105,7 @@ const App = () => {
                 onUpdateCartQty={handleUpdateCartQty}
                 onRemoveFromCart={handleRemoveFromCart}
                 onEmptyCart={handleEmptyCart}
+                component={cart}
               />
             </PrivateRoute>
             <Route path="/checkout" exact>

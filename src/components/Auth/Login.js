@@ -15,7 +15,11 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
+import googleLogo from "../../assets/googleLogo.png";
+
 import useStyles from "./LoginStyles";
+
+import { signInWithGoogle } from "../../firebase";
 
 export default function Login() {
   const emailRef = useRef();
@@ -47,11 +51,17 @@ export default function Login() {
   };
   const avatarStyle = { backgroundColor: "#b39ddb" };
   const btnstyle = { margin: "8px 0" };
+  const inputField = {
+    backgroundColor: "#d1c4e9",
+    border: 0,
+    padding: 2,
+    marginBottom: 5,
+  };
 
   return (
     <>
       <main className={classes.content}>
-        <Grid container justify="center">
+        <Grid className={classes.loginForm} container justify="center">
           <Paper elevation={10} style={paperStyle}>
             <Grid align="center">
               <Avatar style={avatarStyle}>
@@ -59,18 +69,24 @@ export default function Login() {
               </Avatar>
               <h2>Sign In</h2>
             </Grid>
-            <Card.Body>
+            <Card.Body className={classes.loginForm}>
               {error && <Alert variant="danger">{error}</Alert>}
               <Form onSubmit={handleSubmit}>
                 <Form.Group id="email">
-                  <TextField>
-                    <Form.Control type="email" ref={emailRef} required />
-                  </TextField>
+                  <Form.Control
+                    style={inputField}
+                    type="email"
+                    ref={emailRef}
+                    required
+                  />
                 </Form.Group>
                 <Form.Group id="password">
-                  <TextField>
-                    <Form.Control type="password" ref={passwordRef} required />
-                  </TextField>
+                  <Form.Control
+                    style={inputField}
+                    type="password"
+                    ref={passwordRef}
+                    required
+                  />
                 </Form.Group>
                 <Button
                   variant="contained"
@@ -89,11 +105,27 @@ export default function Login() {
                 </Typography>
               </div>
             </Card.Body>
-            <div className="w-100 text-center mt-2">
+
+            <div>
               <Typography>Need an account?</Typography>{" "}
               <Typography>
                 <Link to="/signup">Sign Up</Link>
               </Typography>
+            </div>
+            <div>
+              <Card>
+                <button
+                  className="login-provider-button"
+                  onClick={signInWithGoogle}
+                >
+                  <img
+                    className={classes.loginLogos}
+                    src={googleLogo}
+                    alt="google icon"
+                  />
+                </button>
+              </Card>
+              <span className={classes.formEndtext}>Continue with Google</span>
             </div>
           </Paper>
         </Grid>
