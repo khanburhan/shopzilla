@@ -5,6 +5,14 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Navbar, Products, Cart, Checkout } from "./components";
 import { commerce } from "./lib/commerce";
 
+import Signup from "./components/Auth/Signup";
+import { AuthProvider } from "./contexts/AuthContext";
+import Dashboard from "./components/Auth/Dashboard";
+import Login from "./components/Auth/Login";
+import PrivateRoute from "./components/Auth/PrivateRoute";
+import ForgotPassword from "./components/Auth/ForgotPassword";
+import UpdateProfile from "./components/Auth/UpdateProfile";
+
 const App = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [products, setProducts] = useState([]);
@@ -76,38 +84,45 @@ const App = () => {
 
   return (
     <Router>
-      <div style={{ display: "flex" }}>
-        <CssBaseline />
-        <Navbar
-          totalItems={cart.total_items}
-          handleDrawerToggle={handleDrawerToggle}
-        />
-        <Switch>
-          <Route exact path="/">
-            <Products
-              products={products}
-              onAddToCart={handleAddToCart}
-              handleUpdateCartQty
-            />
-          </Route>
-          <Route exact path="/cart">
-            <Cart
-              cart={cart}
-              onUpdateCartQty={handleUpdateCartQty}
-              onRemoveFromCart={handleRemoveFromCart}
-              onEmptyCart={handleEmptyCart}
-            />
-          </Route>
-          <Route path="/checkout" exact>
-            <Checkout
-              cart={cart}
-              order={order}
-              onCaptureCheckout={handleCaptureCheckout}
-              error={errorMessage}
-            />
-          </Route>
-        </Switch>
-      </div>
+      <AuthProvider>
+        <div style={{ display: "flex" }}>
+          <CssBaseline />
+          <Navbar
+            totalItems={cart.total_items}
+            handleDrawerToggle={handleDrawerToggle}
+          />
+          <Switch>
+            <Route exact path="/">
+              <Products
+                products={products}
+                onAddToCart={handleAddToCart}
+                handleUpdateCartQty
+              />
+            </Route>
+            <PrivateRoute exact path="/cart">
+              <Cart
+                cart={cart}
+                onUpdateCartQty={handleUpdateCartQty}
+                onRemoveFromCart={handleRemoveFromCart}
+                onEmptyCart={handleEmptyCart}
+              />
+            </PrivateRoute>
+            <Route path="/checkout" exact>
+              <Checkout
+                cart={cart}
+                order={order}
+                onCaptureCheckout={handleCaptureCheckout}
+                error={errorMessage}
+              />
+            </Route>
+            <PrivateRoute exact path="/Dashboard" component={Dashboard} />
+            <PrivateRoute path="/update-profile" component={UpdateProfile} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/login" component={Login} />
+            <Route path="/forgot-password" component={ForgotPassword} />
+          </Switch>
+        </div>
+      </AuthProvider>
     </Router>
   );
 };

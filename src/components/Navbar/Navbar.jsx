@@ -28,6 +28,9 @@ import HistoryIcon from "@material-ui/icons/History";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import InfoIcon from "@material-ui/icons/Info";
+import VpnKeyIcon from "@material-ui/icons/VpnKey";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import LockOpenIcon from "@material-ui/icons/LockOpen";
 
 import logo from "../../assets/commerce.png";
 import useStyles from "./styles";
@@ -84,6 +87,52 @@ const PrimarySearchAppBar = ({ totalItems }, props) => {
           </ListItem>
         ))}
       </List>
+      <Divider />
+      {location.pathname === "/" && (
+        <div className={`${classes.signInOut}`}>
+          <IconButton
+            component={Link}
+            to="../Login"
+            aria-label="Sign in"
+            color="inherit"
+          >
+            <VpnKeyIcon className={classes.signInOutIcon} />
+            <Typography className={classes.signInOut} variant="body1">
+              Sign In
+            </Typography>
+          </IconButton>
+        </div>
+      )}
+      {location.pathname === "/" && (
+        <div className={`${classes.signInOut}`}>
+          <IconButton
+            component={Link}
+            to="#"
+            aria-label="Sign out"
+            color="inherit"
+          >
+            <ExitToAppIcon className={classes.signInOutIcon} />
+            <Typography className={classes.signInOut} variant="body1">
+              Sign Out
+            </Typography>
+          </IconButton>
+        </div>
+      )}
+      {location.pathname === "/" && (
+        <div className={`${classes.signInOut}`}>
+          <IconButton
+            component={Link}
+            to="#"
+            aria-label="Sign up"
+            color="inherit"
+          >
+            <LockOpenIcon className={classes.signInOutIcon} />
+            <Typography className={classes.signInOut} variant="body1">
+              SignUp
+            </Typography>
+          </IconButton>
+        </div>
+      )}
     </div>
   );
   const container =

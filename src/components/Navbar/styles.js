@@ -11,7 +11,7 @@ export default makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    backgroundColor: "#673ab7",
+    backgroundColor: "#ede7f6",
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
@@ -27,10 +27,10 @@ export default makeStyles((theme) => ({
     alignItems: "center",
     display: "flex",
     textDecoration: "none",
-    color: "#ede7f6",
+    color: "#673ab7",
   },
   cartIcon: {
-    color: "#ede7f6",
+    color: "#673ab7",
   },
   image: {
     marginRight: "10px",
@@ -83,10 +83,16 @@ export default makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: fade("#ede7f6", 0.1),
+    backgroundColor: fade("#ede7f6", 0.9),
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+  },
+  signInOut: {
+    marginLeft: 15,
+  },
+  signInOutIcon: {
+    color: fade("#000000", 0.5),
   },
 }));
